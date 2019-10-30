@@ -1,5 +1,19 @@
+# AKS Best Practices Ignite 19
+this repository contains the demos and the transcript for the "Applying best practices to Azure Kubernetes Service (AKS)" delivered in Ignite, video and slides can be found [here](https://aka.ms/aks-best-practices-ignite)
 
-# Contributing
+## Content
+* [Backup and Restore Demo](backup_restore)
+* [Multipe Availability Zones Demo](availability_zones)
+* [Multiple Regions Mysql Demo](multi_region_mysql)
+* [Multiple Regions Multi-Masters Cosmos](multi_region_mysql)
+* [AKS Cluster and Tags Demo](multi_region_mysql)
+* [AKS and Azure Policy](multi_region_mysql)
+* [Safe Kubernetes Dashboard](dashboard_demo)
+* [AKS Cluster Upgrade - Nodepools](cluster_upgrade_node_pools)
+* [AKS Cluster Upgrade - Nodepools](cluster_upgrades_blue_green)
+
+
+## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us

@@ -10,7 +10,7 @@ this repository contains the demos and the transcript for the "Applying best pra
 * [AKS and Azure Policy](multi_region_mysql)
 * [Safe Kubernetes Dashboard](dashboard_demo)
 * [AKS Cluster Upgrade - Nodepools](cluster_upgrade_node_pools)
-* [AKS Cluster Upgrade - Nodepools](cluster_upgrades_blue_green)
+* [AKS Cluster Upgrade - New Clusters](cluster_upgrades_blue_green)
 
 
 ## Contributing

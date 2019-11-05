@@ -1,7 +1,7 @@
 # Backup and Restore AKS
-Backup and Restore is your should be the top item in your business contunity plan. in this demo i'll walk you through the different options you have in Azure and the recommendations 
+Backup and Restore should be the top item in your business continuity plan. in this demo i'll walk you through the different options you have in Azure and the recommendations.
 
-## Why this is important
+## Why is this important?
 The need for back up and restore is concerned when state is involved in your Kubernetes deployment, once you have a persistent volume as part of a Kubernetes stateful set or a deployment then your cluster is no longer the same, it requires more care, as losing the cluster or the volume will result in losing data.
 
 ## Azure Snapshot API
@@ -18,7 +18,7 @@ If you're ok with the above limitations, then Azure Snapshot API is what you sho
 
 
 ## ARK/Velero 
-[Velero](https://velero.io/docs/master/index.html) (Formerly Heptio ARK), is a Kubernetes native Backup and Retore tool for your persistent volumes. 
+[Velero](https://velero.io/docs/master/index.html) (Formerly Heptio ARK), is a Kubernetes native Backup and Restore tool for your persistent volumes. 
 
 Installing Velero on AKS is pretty straightforward, follow the document [here](https://velero.io/docs/v1.1.0/azure-config/) and you will be up and running with Velero in under 30 mnts. 
 
@@ -157,14 +157,9 @@ Our demo is concluded
 #### Important Note
 The other important part of your business continuity  plan is to ship your snapshots and disks to another region
 1. Azure Blob Storage  and blob containers can be easily geo replicated check [here](https://docs.microsoft.com/en-us/azure/storage/common/storage-redundancy)
-2. The other remaining part is copying the actual disk snapshot to another region, unfortunitly as it stands we don't have a native API to accomplish this, however, there is a Power Shell module which can accomplish this you can find it [here](https://docs.microsoft.com/en-us/azure/virtual-machines/scripts/virtual-machines-windows-powershell-sample-copy-snapshot-to-storage-account), also please add your use case to the user voice [here](https://feedback.azure.com/forums/216843-virtual-machines/suggestions/34900495-should-be-able-to-copy-snapshots-between-regions-i) 
-
-Note that the backup team is already working on the above capability. 
+2. The other remaining part is copying the actual disk snapshot to another region, unfortunately as it stands we don't have a native API to accomplish this, however, there is a Power Shell module which can accomplish this you can find it [here](https://docs.microsoft.com/en-us/azure/virtual-machines/scripts/virtual-machines-windows-powershell-sample-copy-snapshot-to-storage-account), also please add your use case to the user voice [here](https://feedback.azure.com/forums/216843-virtual-machines/suggestions/34900495-should-be-able-to-copy-snapshots-between-regions-i) 
 
 
-#### clean up
-```shell
-$ kubectl -n ignite run front-end --image=mysql:5.7 -i -t --rm --restart=Never --\
-  mysql -h mysql -e "drop database ignitedb"
-$ velero delete backup ignite-v1
-```
+**Note that the backup team is already working on the above capability, if you are interested in influcening how a first party solution  would  work, then please  fill  the below survey **
+![backup_survey](backup_surevy.png)
+

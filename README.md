@@ -5,7 +5,7 @@ this repository contains the demos and the transcript for the "Applying best pra
 * [Backup and Restore Demo](backup_restore)
 * [Multipe Availability Zones Demo](availability_zones)
 * [Multiple Regions Mysql Demo](multi_region_mysql)
-* [Multiple Regions Multi-Masters Cosmos](multi_region_mysql)
+* [Multiple Regions Multi-Masters Cosmos](multi_region_cosmos)
 * [AKS Cluster and Tags Demo](multi_region_mysql)
 * [AKS and Azure Policy](multi_region_mysql)
 * [Safe Kubernetes Dashboard](dashboard_demo)

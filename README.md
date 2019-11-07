@@ -1,5 +1,7 @@
 # AKS Best Practices Ignite 19
-this repository contains the demos and the transcript for the "Applying best practices to Azure Kubernetes Service (AKS)" delivered in Ignite, video and slides can be found [here](https://aka.ms/aks-best-practices-ignite)
+this repository contains the demos and the transcript for the "Applying best practices to Azure Kubernetes Service (AKS)" delivered in Ignite, video and slides can be found [here](https://aka.ms/MicrosoftIgnite2019/BRK4006) I also added the slides in this repo [here](slides)
+
+
 
 ## Content
 * [Backup and Restore Demo](backup_restore)

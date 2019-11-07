@@ -105,7 +105,7 @@ I'll be using a tool called kubectx to switch between clusters, if you never use
 kubectx $clustername
 
 #deploy  and expose the application using type loadbalancer 
-$ kubectl apply -f app/pp_region1.yaml
+$ kubectl apply -f app/app_region1.yaml
 $ kubectl expose pod php-westeurope --type=LoadBalancer --port 80
 
 #make sure your container is running and you have got a Public IP
@@ -144,7 +144,7 @@ php-northeurope   LoadBalancer   10.0.171.160   52.XXX.XXX.XXX   80:32214/TCP   
 
 Now that we have 2 read endpoints for our application lets use Azure Traffic Manager to load balance across them. 
 
-Creating a traffic manager should be straigt forward, head to the [docs](https://docs.microsoft.com/en-us/azure/traffic-manager/traffic-manager-configure-weighted-routing-method) and follow along, but note the below:
+Creating a traffic manager should be straight forward, head to the [docs](https://docs.microsoft.com/en-us/azure/traffic-manager/traffic-manager-configure-weighted-routing-method) and follow along, but note the below:
 * You can choose any routing method, in my case I chose "Weighted" to Round Rubin across the endpoints
 * Your endpoint type will be IP Address
 * You won't find your IPs in the endpoint selection unless you created DNS names for them before, so head to your MC_ resource group -> find your IP -> configure -> create DNS name -> save. repeated for the second cluster.

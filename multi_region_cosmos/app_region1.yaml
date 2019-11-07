@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cosmoscats-west
+  labels:
+    location: westeurope
+spec:
+  containers:
+  - name: cosmoscats-west
+    image: mohamman/cosmoscats:v1
+    env:
+    - name: COSMOCATS_COSMOSDB_ENDPOINT
+      value: "https://cosmos-demo-ignite.documents.azure.com:443/"
+    - name: COSMOCATS_COSMOSDB_KEY
+      value: "ZE3PECdsEDWhRniwV8RUbLELSpwWMzf1T42MxcgAFHv3bs9xhFoIOY3wqbVtWymTyjYxmPL47VIJBPgKEpKMng=="
+    

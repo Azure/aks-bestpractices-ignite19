@@ -33,22 +33,22 @@ $ az aks create \
 $ az aks get-credentials --resource-group $rg --name $clustername
 ```
 
-2. Verify the nodes are spread across AZs (you can remove the '-l agentpool=nodes1')
+2. Verify the nodes are spread across AZs (you can remove the '-l agentpool=nodepool1')
 
 ```shell
-$ kubectl describe nodes -l agentpool=nodes1 | grep -e "Name:" -e "failure-domain.beta.kubernetes.io/zone"
-Name:               aks-nodes1-14441868-vmss000000
+$ kubectl describe nodes -l agentpool=nodepool1 | grep -e "Name:" -e "failure-domain.beta.kubernetes.io/zone"
+Name:               aks-nodepool1-14441868-vmss000000
                     failure-domain.beta.kubernetes.io/zone=westeurope-1
-Name:               aks-nodes1-14441868-vmss000001
+Name:               aks-nodepool1-14441868-vmss000001
                     failure-domain.beta.kubernetes.io/zone=westeurope-2
-Name:               aks-nodes1-14441868-vmss000002
+Name:               aks-nodepool1-14441868-vmss000002
                     failure-domain.beta.kubernetes.io/zone=westeurope-3
 
-$ kubectl get nodes -l agentpool=nodes1 --show-labels
+$ kubectl get nodes -l agentpool=nodepool1 --show-labels
 NAME                             STATUS   ROLES   AGE   VERSION   LABELS
-aks-nodes1-14441868-vmss000000   Ready    agent   44d   v1.14.7   agentpool=nodes1,beta.kubernetes.io/arch=amd64,beta.kubernetes.io/instance-type=Standard_B2s,beta.kubernetes.io/os=linux,failure-domain.beta.kubernetes.io/region=westeurope,**failure-domain.beta.kubernetes.io/zone=westeurope-1**,...
-aks-nodes1-14441868-vmss000001   Ready    agent   44d   v1.14.7   agentpool=nodes1,beta.kubernetes.io/arch=amd64,beta.kubernetes.io/instance-type=Standard_B2s,beta.kubernetes.io/os=linux,failure-domain.beta.kubernetes.io/region=westeurope,failure-domain.beta.kubernetes.io/zone=westeurope-2,...
-aks-nodes1-14441868-vmss000002   Ready    agent   44d   v1.14.7   agentpool=nodes1,beta.kubernetes.io/arch=amd64,beta.kubernetes.io/instance-type=Standard_B2s,beta.kubernetes.io/os=linux,failure-domain.beta.kubernetes.io/region=westeurope,failure-domain.beta.kubernetes.io/zone=westeurope-3,...
+aks-nodepool1-14441868-vmss000000   Ready    agent   44d   v1.14.7   agentpool=nodepool1,beta.kubernetes.io/arch=amd64,beta.kubernetes.io/instance-type=Standard_B2s,beta.kubernetes.io/os=linux,failure-domain.beta.kubernetes.io/region=westeurope,**failure-domain.beta.kubernetes.io/zone=westeurope-1**,...
+aks-nodepool1-14441868-vmss000001   Ready    agent   44d   v1.14.7   agentpool=nodepool1,beta.kubernetes.io/arch=amd64,beta.kubernetes.io/instance-type=Standard_B2s,beta.kubernetes.io/os=linux,failure-domain.beta.kubernetes.io/region=westeurope,failure-domain.beta.kubernetes.io/zone=westeurope-2,...
+aks-nodepool1-14441868-vmss000002   Ready    agent   44d   v1.14.7   agentpool=nodepool1,beta.kubernetes.io/arch=amd64,beta.kubernetes.io/instance-type=Standard_B2s,beta.kubernetes.io/os=linux,failure-domain.beta.kubernetes.io/region=westeurope,failure-domain.beta.kubernetes.io/zone=westeurope-3,...
 ```
 
 Now you maybe wondering where did this label "failure-domain.beta.kubernetes.io/zone" come from, this label is automatically assigned by the cloud provider and its very important for how will you create affinity rules for your workloads deployed in Kubernetes, to learn more please check [here](https://kubernetes.io/docs/reference/kubernetes-api/labels-annotations-taints/#failure-domain-beta-kubernetes-io-zone) .
@@ -65,10 +65,10 @@ deployment.apps/az-test created
 # verify the spread behavior 
 kubectl get pods -l run=az-test -o wide 
 NAME                       READY   STATUS    RESTARTS   AGE   IP            NODE                             NOMINATED NODE   READINESS GATES
-az-test-5b6b9977dd-2d4pp   1/1     Running   0          8s    10.244.0.24   aks-nodes1-14441868-vmss000002   <none>           <none>
-az-test-5b6b9977dd-5lllz   1/1     Running   0          8s    10.244.0.35   aks-nodes1-14441868-vmss000002   <none>           <none>
-az-test-5b6b9977dd-jg67d   1/1     Running   0          8s    10.244.1.36   aks-nodes1-14441868-vmss000000   <none>           <none>
-az-test-5b6b9977dd-nks9k   1/1     Running   0          8s    10.244.2.31   aks-nodes1-14441868-vmss000001   <none>           <none>
+az-test-5b6b9977dd-2d4pp   1/1     Running   0          8s    10.244.0.24   aks-nodepool1-14441868-vmss000002   <none>           <none>
+az-test-5b6b9977dd-5lllz   1/1     Running   0          8s    10.244.0.35   aks-nodepool1-14441868-vmss000002   <none>           <none>
+az-test-5b6b9977dd-jg67d   1/1     Running   0          8s    10.244.1.36   aks-nodepool1-14441868-vmss000000   <none>           <none>
+az-test-5b6b9977dd-nks9k   1/1     Running   0          8s    10.244.2.31   aks-nodepool1-14441868-vmss000001   <none>           <none>
 az-test-5b6b9977dd-xgj5f   1/1     Running   0          8s    10.244.1.37   aks-nodes1-14441868-vmss000000   <none>           <none>
 az-test-5b6b9977dd-xqrwl   1/1     Running   0          8s    10.244.2.30   aks-nodes1-14441868-vmss000001   <none>           <none>
 ```
